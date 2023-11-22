@@ -1,9 +1,12 @@
 package com.todomeet.todomeet.controller;
 import com.todomeet.todomeet.dto.ProjectDto;
+import com.todomeet.todomeet.entity.ProjectEntity;
 import com.todomeet.todomeet.service.ProjectService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -15,16 +18,15 @@ public class ProjectController {
 
     @PostMapping
     public ResponseEntity addSchedule(@RequestBody  ProjectDto projectDto){
-        System.out.println(projectDto);
         ResponseEntity responseEntity = projectService.addSchedule(projectDto);
         return responseEntity;
 
     }
 
 
-    @GetMapping("/{month}")
-    public ResponseEntity getSchedule(@RequestParam String month){
-        ResponseEntity responseEntity = projectService.getSchedule(month);
+    @DeleteMapping("/{projectId}")
+    public ResponseEntity deleteSchedule(@PathVariable Long projectId){
+        ResponseEntity responseEntity = projectService.deleteSchedule(projectId);
         return responseEntity;
 
     }
