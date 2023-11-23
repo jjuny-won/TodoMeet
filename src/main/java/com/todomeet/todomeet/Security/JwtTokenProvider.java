@@ -2,9 +2,9 @@ package com.todomeet.todomeet.Security;
 
 
 import com.todomeet.todomeet.dto.JwtAuthDto;
+
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
-import io.jsonwebtoken.security.SignatureException;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,6 +16,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.security.Key;
+
 import java.util.Base64;
 import java.util.Date;
 
