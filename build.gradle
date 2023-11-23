@@ -32,7 +32,6 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 //	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'com.google.cloud:spring-cloud-gcp-starter'
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
 	implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
 	implementation 'org.json:json:20210307'
@@ -42,7 +41,7 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	implementation 'org.springframework.cloud:spring-cloud-starter-aws'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-//	testImplementation 'org.springframework.security:spring-security-test'
+	testImplementation 'org.springframework.security:spring-security-test'
 
 	implementation 'io.jsonwebtoken:jjwt-api:0.11.2' // Use the latest version available
 	implementation 'io.jsonwebtoken:jjwt-impl:0.11.2' // Use the same version as jjwt-api
@@ -59,10 +58,3 @@ dependencies {
 //	}
 //}
 
-tasks.named('bootBuildImage') {
-	builder = 'paketobuildpacks/builder-jammy-base:latest'
-}
-
-tasks.named('test') {
-	useJUnitPlatform()
-}
