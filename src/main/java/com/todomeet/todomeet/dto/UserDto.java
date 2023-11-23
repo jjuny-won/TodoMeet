@@ -14,4 +14,12 @@ public class UserDto {
     private String userName;
     private String profileImage;
     private String refreshToken;
+
+    private String userEmail;
+
+    public UserDto(String userName,String userEmail,String profileImage){
+        this.userName = userEmail;
+        this.userEmail = userEmail;
+        this.profileImage = profileImage;
+    }
 }
