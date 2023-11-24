@@ -30,14 +30,10 @@ repositories {
 dependencies {
 
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-//	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
-	implementation 'org.springframework.boot:spring-boot-starter-security:2.6.3'
-
-//	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-	implementation 'org.springframework.boot:spring-boot-starter-web:3.1.5'
-
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
-	implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
+	implementation 'org.springframework.cloud:spring-cloud-starter-aws'
 	implementation 'org.json:json:20210307'
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.mysql:mysql-connector-j'
@@ -51,22 +47,12 @@ dependencies {
 	implementation 'io.jsonwebtoken:jjwt-impl:0.11.2' // Use the same version as jjwt-api
 	implementation 'io.jsonwebtoken:jjwt-jackson:0.11.2' // Use the same version as jjwt-api
 
-
 	//JWT 서비스 생성위한 라이브러리 추가
 	implementation 'com.auth0:java-jwt:4.2.1'
 
-	implementation 'org.springframework.boot:spring-boot-starter-web'
 }
 
 
-
-
-dependencies {
-	implementation('org.springframework.boot:spring-boot-starter-web') {
-		exclude group: 'org.springframework', module: 'spring-core'
-	}
-	// other dependencies
-}
 
 test {
 	maxHeapSize = "1024m"
