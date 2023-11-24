@@ -15,40 +15,39 @@ spring:
         format_sql: true
         default_batch_fetch_size: 1000
 
-  # application.yml
-  security:
-    enable-csrf: false
-#  cloud:
-#    gcp:
-#      storage:
-#        credentials:
-#          location: classpath:applied-card-403302-4a5091591256.json
-#        project-id: applied-card-403302
-#        bucket: matna-bucket
+security:
+  enable-csrf: false
+
+cloud:
+  aws:
+    s3:
+      bucket: todomeet
+    stack:
+      auto: false
+    region:
+      static: ap-northeast-2
+    credentials:
+      access-key: AKIAT6OGMAR5LOWVUAMQ
+      secret-key: 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
 
 server:
   port: 8080
+
 error:
-  include-stacktrace=never
+  include-stacktrace: never
+
 logging:
   level:
     org.hibernate.SQL: debug
     org.hibernate.type: trace
     org.springframework: DEBUG
 
-
-
-
-
-#?? - ??? ??
 decorator:
   datasource:
     p6spy:
       enable-logging: true
       multiline: true
       logging: slf4j
-
-#JWT
 
 app:
   jwt:
