@@ -1,8 +1,8 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/todomeet?serverTimezone=Asia/Seoul
-    username: root
+    url: jdbc:mysql://mydatabase.c4okq0b9ye5v.ap-northeast-2.rds.amazonaws.com:3306/todomeet
+    username: admin
     password: 12345678
   jpa:
     database: mysql

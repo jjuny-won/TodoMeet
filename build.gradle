@@ -59,7 +59,7 @@ dependencies {
 
 
 dependencies {
-	implementation('org.springframework.boot:spring-boot-starter-web') {
+	implementation('org.springframework.boot:spr:wqing-boot-starter-web') {
 		exclude group: 'org.springframework', module: 'spring-core'
 	}
 	// other dependencies
