@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://mydatabase.c4okq0b9ye5v.ap-northeast-2.rds.amazonaws.com:3306/todomeet
+    url: jdbc:mysql://mydatabase.c4okq0b9ye5v.ap-northeast-2.rds.amazonaws.com:3306/mydatabase?useSSL=false
     username: admin
     password: 12345678
   jpa:
