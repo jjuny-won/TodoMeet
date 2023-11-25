@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/schedule")
@@ -27,6 +26,13 @@ public class ProjectController {
     @DeleteMapping("/{projectId}")
     public ResponseEntity deleteSchedule(@PathVariable Long projectId){
         ResponseEntity responseEntity = projectService.deleteSchedule(projectId);
+        return responseEntity;
+
+    }
+
+    @PatchMapping("/{projectId}")
+    public ResponseEntity patchSchedule(@PathVariable Long projectId, ProjectDto projectDto){
+        ResponseEntity responseEntity = projectService.patchSchedule(projectId,projectDto);
         return responseEntity;
 
     }

@@ -13,6 +13,8 @@ public enum GlobalErrorCode implements ErrorCode {
     NOT_SUPPORTED_MEDIA_TYPE_ERROR("GLOBAL_004", "지원하지 않는 Media type입니다.", HttpStatus.UNSUPPORTED_MEDIA_TYPE),
     SERVER_ERROR("GLOBAL_005", "서버와의 연결에 실패하였습니다.", HttpStatus.INTERNAL_SERVER_ERROR),
     ACCESS_DENIED("GLOBAL_006", "권한이 없습니다.", HttpStatus.FORBIDDEN),
+
+    NOT_FOUND_ERROR("GLOBAL_007","찾을 수 없는 게시물 입니다", HttpStatus.NOT_FOUND);
     ;
 
     private final String errorCode;
