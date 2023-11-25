@@ -31,4 +31,11 @@ public class ProjectController {
 
     }
 
+    @PatchMapping("/{projectId}")
+    public ResponseEntity patchSchedule(@PathVariable Long projectId, ProjectDto projectDto){
+        ResponseEntity responseEntity = projectService.patchSchedule(projectId,projectDto);
+        return responseEntity;
+
+    }
+
 }
