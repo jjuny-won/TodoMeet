@@ -5,7 +5,7 @@ spring:
     username: admin
     password: 12345678
   jpa:
-    database: mysql
+    database: mydatabase
     generate-ddl: true
     hibernate:
       ddl-auto: create
