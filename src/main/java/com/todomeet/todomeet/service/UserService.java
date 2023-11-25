@@ -1,7 +1,5 @@
 package com.todomeet.todomeet.service;
 
-
-
 import com.todomeet.todomeet.Security.JwtTokenProvider;
 import com.todomeet.todomeet.dto.JwtAuthDto;
 import com.todomeet.todomeet.dto.UserDto;
@@ -25,9 +23,6 @@ public class UserService {
     private final JwtTokenProvider jwtTokenProvider;
 
 
-
-//    @Value("${cloud.aws.s3.bucket}")
-//    private String bucket;
 
     //회원가입
     @Transactional
