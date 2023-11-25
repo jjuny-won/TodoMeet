@@ -1,15 +1,14 @@
 package com.todomeet.todomeet.service;
 
 
-import com.amazonaws.services.s3.AmazonS3Client;
+
 import com.todomeet.todomeet.Security.JwtTokenProvider;
 import com.todomeet.todomeet.dto.JwtAuthDto;
 import com.todomeet.todomeet.dto.UserDto;
 import com.todomeet.todomeet.entity.UserEntity;
-import com.todomeet.todomeet.etc.Role;
 import com.todomeet.todomeet.repository.UserRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
+
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -25,10 +24,10 @@ public class UserService {
     private final UserRepository userRepository;
     private final JwtTokenProvider jwtTokenProvider;
 
-    private final AmazonS3Client amazonS3Client;
 
-    @Value("${cloud.aws.s3.bucket}")
-    private String bucket;
+
+//    @Value("${cloud.aws.s3.bucket}")
+//    private String bucket;
 
     //회원가입
     @Transactional

@@ -18,17 +18,17 @@ spring:
 security:
   enable-csrf: false
 
-cloud:
-  aws:
-    s3:
-      bucket: todomeet
-    stack:
-      auto: false
-    region:
-      static: ap-northeast-2
-    credentials:
-      access-key: AKIAT6OGMAR5LOWVUAMQ
-      secret-key: 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
+#cloud:
+#  aws:
+#    s3:
+#      bucket: todomeet
+#    stack:
+#      auto: false
+#    region:
+#      static: ap-northeast-2
+#    credentials:
+#      access-key: AKIAT6OGMAR5LOWVUAMQ
+#      secret-key: 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
 
 server:
   port: 8080
