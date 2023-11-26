@@ -20,6 +20,8 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.List;
 
+import static com.todomeet.todomeet.etc.Role.ROLE_USER;
+
 @EnableMethodSecurity
 @AllArgsConstructor
 @Configuration
@@ -39,6 +41,7 @@ public class SecurityConfig {
                 .cors(cors -> corsconfigurationSource())
                 .csrf(AbstractHttpConfigurer::disable)
                 .exceptionHandling(exception -> exception.authenticationEntryPoint(authenticationEntryPoint))
+
                 .authorizeHttpRequests((authorize)->
                         authorize
                                 .requestMatchers("/","/css/**","/images/**","/js/**","/favicon.ico","/h2-console/**").permitAll()

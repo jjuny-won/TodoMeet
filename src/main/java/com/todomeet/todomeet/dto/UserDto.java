@@ -10,16 +10,15 @@ import lombok.*;
 @AllArgsConstructor
 public class UserDto {
 
-    private Long userId;
+
     private String userName;
     private String profileImage;
     private String refreshToken;
-
     private String userEmail;
 
-    public UserDto(String userName,String userEmail,String profileImage){
-        this.userName = userEmail;
-        this.userEmail = userEmail;
+    public UserDto(String userEmail, String userName, String profileImage){
+        this.userEmail  = userEmail;
+        this.userName = userName;
         this.profileImage = profileImage;
     }
 }

@@ -1,12 +1,8 @@
 package com.todomeet.todomeet.dto;
 
-
-import com.todomeet.todomeet.entity.ProjectEntity;
 import lombok.*;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
 
 @Getter
 @Setter
@@ -15,7 +11,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProjectDto {
-    private Long userId;
+    private String userEmail;
     private String eventName;
     private LocalDate startDay;
     private LocalDate endDay;
