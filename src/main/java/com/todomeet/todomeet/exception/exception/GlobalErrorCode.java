@@ -15,7 +15,9 @@ public enum GlobalErrorCode implements ErrorCode {
     ACCESS_DENIED("GLOBAL_006", "권한이 없습니다.", HttpStatus.FORBIDDEN),
 
     NOT_FOUND_ERROR("GLOBAL_007","찾을 수 없는 게시물 입니다", HttpStatus.NOT_FOUND);
-    ;
+
+
+
 
     private final String errorCode;
     private final String message;

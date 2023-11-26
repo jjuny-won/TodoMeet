@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Entity
-@Table(name="Project")
+@Table(name="project")
 public class ProjectEntity {
 
     @Id
@@ -19,7 +19,7 @@ public class ProjectEntity {
     private Long projectId;
 
     @Column(nullable = false)
-    private Long userId;
+    private String userId;
 
     @Column(nullable = false)
     private String eventName;
@@ -39,7 +39,7 @@ public class ProjectEntity {
     private String endTime;
 
     public ProjectEntity(ProjectDto projectDto){
-        this.userId = projectDto.getUserId();
+        this.userId = projectDto.getUserEmail();
         this.eventName = projectDto.getEventName();
         this.startDay = projectDto.getStartDay();
         this.endDay = projectDto.getEndDay();

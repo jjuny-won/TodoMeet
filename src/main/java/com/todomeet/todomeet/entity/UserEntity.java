@@ -19,14 +19,10 @@ import java.util.stream.Collectors;
 @Getter
 @Setter
 @Entity
-@Table(name="User")
+@Table(name="user")
 public class UserEntity implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
-
-    @Column(nullable = false)
     private String userEmail;
 
     @Column(nullable = false)

@@ -16,7 +16,6 @@ public enum MemberErrorCode implements ErrorCode {
     INCORRECT_INFO("MEMBER_005", "정보가 없습니다", HttpStatus.BAD_REQUEST),
     INVALID_ROLE("MEMBER_005", "등록된 역할이 없습니다", HttpStatus.BAD_REQUEST),
     ALREADY_LOGOUT("MEMBER_006","이미 로그아웃한 사용자입니다.",HttpStatus.CONFLICT),
-
     EMPTY_REGION("MEMBER_001", "주소를 입력하지 않았습니다", HttpStatus.CONFLICT),
             ;
 
