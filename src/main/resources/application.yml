@@ -38,9 +38,7 @@ error:
 
 logging:
   level:
-    org:
-      springframework:
-        security: DEBUG
+    root : debug
     org.hibernate.SQL: debug
     org.hibernate.type: trace
     org.springframework: DEBUG
