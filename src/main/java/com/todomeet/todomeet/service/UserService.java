@@ -8,6 +8,7 @@ import com.todomeet.todomeet.exception.exception.BaseException;
 import com.todomeet.todomeet.exception.exception.MemberErrorCode;
 import com.todomeet.todomeet.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 
