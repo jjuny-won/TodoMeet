@@ -4,6 +4,7 @@ import com.todomeet.todomeet.dto.ProjectDto;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Builder
 @AllArgsConstructor
@@ -43,11 +44,20 @@ public class ProjectEntity {
         this.eventName = projectDto.getEventName();
         this.startDay = projectDto.getStartDay();
         this.endDay = projectDto.getEndDay();
-        this.startTime = projectDto.getStartTime().toString();
-        this.endTime = projectDto.getEndTime().toString();
+//        this.startTime = projectDto.getStartTime().toString();
+//        this.endTime = projectDto.getEndTime().toString();
+        this.startTime = projectDto.getStartTime() != null ? projectDto.getStartTime().toString() : null;
+        this.endTime = projectDto.getEndTime() != null ? projectDto.getEndTime().toString() : null;
     }
 
-
-
-
+    public static ProjectEntity toEntity(ProjectDto projectDto) {
+        return ProjectEntity.builder()
+                .userId(projectDto.getUserEmail())
+                .eventName(projectDto.getEventName())
+                .startDay(projectDto.getStartDay())
+                .endDay(projectDto.getEndDay())
+                .startTime(projectDto.getStartTime() != null ? projectDto.getStartTime().toString() : null)
+                .endTime(projectDto.getEndTime() != null ? projectDto.getEndTime().toString() : null)
+                .build();
+    }
 }
