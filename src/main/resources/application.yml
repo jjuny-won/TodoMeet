@@ -8,7 +8,7 @@ spring:
     database: MYSQL
     generate-ddl: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     properties:
       hibernate:
         show-sql: true
