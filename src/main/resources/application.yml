@@ -31,7 +31,7 @@ security:
 #      secret-key: BZoBfBWzevft5oEHMGe/DmfXf3AS+MWfaPbG5X6L
 
 server:
-  port: 8080
+  port: 8081
 
 error:
   include-stacktrace: never

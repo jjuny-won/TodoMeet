@@ -20,7 +20,7 @@ public class ProjectDto {
     private LocalTime endTime;
 
 
-    public static ProjectDto toDto(ProjectEntity projectEntity) {
+    public static ProjectDto projectToDto(ProjectEntity projectEntity) {
         return ProjectDto.builder()
                 .userEmail(projectEntity.getUserId())
                 .eventName(projectEntity.getEventName())

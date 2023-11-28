@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -80,5 +81,14 @@ public class ProjectService {
         }
         // 프로젝트를 찾을 수 없는 경우
         throw new BaseException(GlobalErrorCode.NOT_FOUND_ERROR);
+    }
+
+    //아이디로 조회하면 반환하는 함수
+    public ProjectDto getProject(Long projectId)
+    {
+        ProjectEntity projectEntity = projectRepository.findById(projectId)
+                .orElseThrow(() -> new BaseException(GlobalErrorCode.NOT_FOUND_ERROR));
+        return ProjectDto.projectToDto(projectEntity);
+
     }
 }
