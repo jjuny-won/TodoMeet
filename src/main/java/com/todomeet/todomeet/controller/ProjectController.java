@@ -20,9 +20,9 @@ public class ProjectController {
 
 //   모임 등록
     @PostMapping
-    public ResponseEntity addSchedule(@RequestBody  ProjectDto projectDto){
-        ResponseEntity responseEntity = projectService.addSchedule(projectDto);
-        return responseEntity;
+    public ProjectDto addSchedule(@RequestBody  ProjectDto projectDto){
+        log.info("일정 등록 start");
+        return projectService.addSchedule(projectDto);
 
     }
 
@@ -35,17 +35,14 @@ public class ProjectController {
     }
 
 //모임 수정
-    @PatchMapping("/{projectId}")
-    public ResponseEntity<ProjectDto> patchSchedule(@PathVariable Long projectId, @RequestBody ProjectDto projectDto) {
-        log.info("일정 수정 start");
-        System.out.println("ProjectDto" + projectDto);
-        log.info("일정 수정 End");
-        ProjectDto updatedProject = projectService.patchSchedule(projectId, projectDto);
+@PatchMapping("/{projectId}")
+public ResponseEntity<?> patchSchedule(@PathVariable Long projectId, @RequestBody ProjectDto projectDto) {
+    ProjectDto result = projectService.patchSchedule(projectId, projectDto);
+    return ResponseEntity.ok(result);
+}
 
-        // 수정된 프로젝트를 반환
-        return ResponseEntity.ok(updatedProject);
-    }
 
+    //모임 조회
     @GetMapping("/{projectId}")
     public ResponseEntity<ProjectDto> patchSchedule(@PathVariable Long projectId) {
         log.info("일정 조회 start");

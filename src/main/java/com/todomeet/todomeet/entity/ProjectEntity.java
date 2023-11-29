@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 @Builder
 @AllArgsConstructor
@@ -33,21 +34,22 @@ public class ProjectEntity {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDay;
 
-    @Column(nullable = false)
-    private String startTime;
-
-    @Column(nullable = false)
-    private String endTime;
+    private String memo;
 
     public ProjectEntity(ProjectDto projectDto){
         this.userId = projectDto.getUserEmail();
         this.eventName = projectDto.getEventName();
         this.startDay = projectDto.getStartDay();
         this.endDay = projectDto.getEndDay();
-//        this.startTime = projectDto.getStartTime().toString();
-//        this.endTime = projectDto.getEndTime().toString();
-        this.startTime = projectDto.getStartTime() != null ? projectDto.getStartTime().toString() : null;
-        this.endTime = projectDto.getEndTime() != null ? projectDto.getEndTime().toString() : null;
+        this.memo = projectDto.getMemo();
+    }
+
+    public void updateFromDto(ProjectDto projectDto) {
+        this.setStartDay(projectDto.getStartDay());
+        this.setEndDay(projectDto.getEndDay());
+        this.setEventName(projectDto.getEventName());
+        this.setMemo(projectDto.getMemo());
+        // 기타 필요한 필드 업데이트
     }
 
     public static ProjectEntity toEntity(ProjectDto projectDto) {
@@ -56,8 +58,7 @@ public class ProjectEntity {
                 .eventName(projectDto.getEventName())
                 .startDay(projectDto.getStartDay())
                 .endDay(projectDto.getEndDay())
-                .startTime(projectDto.getStartTime() != null ? projectDto.getStartTime().toString() : null)
-                .endTime(projectDto.getEndTime() != null ? projectDto.getEndTime().toString() : null)
+                .memo(projectDto.getMemo())
                 .build();
     }
 }

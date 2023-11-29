@@ -4,6 +4,7 @@ import com.todomeet.todomeet.entity.ProjectEntity;
 import lombok.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -16,8 +17,20 @@ public class ProjectDto {
     private String eventName;
     private LocalDate startDay;
     private LocalDate endDay;
-    private LocalTime startTime;
-    private LocalTime endTime;
+
+    private String memo;
+
+    private List<TimeSlot> timeSlots;
+
+    @Getter
+    @Setter
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class TimeSlot {
+        private String day;
+        private LocalTime startTime;
+        private LocalTime endTime;
+    }
 
 
     public static ProjectDto projectToDto(ProjectEntity projectEntity) {
@@ -26,8 +39,7 @@ public class ProjectDto {
                 .eventName(projectEntity.getEventName())
                 .startDay(projectEntity.getStartDay())
                 .endDay(projectEntity.getEndDay())
-                .startTime(projectEntity.getStartTime() != null ? LocalTime.parse(projectEntity.getStartTime()) : null)
-                .endTime(projectEntity.getEndTime() != null ? LocalTime.parse(projectEntity.getEndTime()) : null)
+                .memo(projectEntity.getMemo())
                 .build();
     }
 }

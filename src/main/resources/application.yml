@@ -1,5 +1,7 @@
 spring:
   datasource:
+    hikari:
+      idle-timeout: 60000
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://mydatabase.c4okq0b9ye5v.ap-northeast-2.rds.amazonaws.com:3306/todomeet?useSSL=false
     username: admin
@@ -9,11 +11,10 @@ spring:
     generate-ddl: true
     hibernate:
       ddl-auto: update
-    properties:
-      hibernate:
-        show-sql: true
-        format_sql: true
-        default_batch_fetch_size: 1000
+      show-sql: true
+      format_sql: true
+      default_batch_fetch_size: 1000
+      dialect: org.hibernate.dialect.MySQLDialect
 
 security:
   enable-csrf: false
@@ -31,7 +32,7 @@ security:
 #      secret-key: BZoBfBWzevft5oEHMGe/DmfXf3AS+MWfaPbG5X6L
 
 server:
-  port: 8080
+  port: 8081
 
 error:
   include-stacktrace: never
@@ -54,6 +55,7 @@ app:
   jwt:
     secret: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
     accessTokenExpiration:
-      milliseconds: 3600000  # 1시간
+      milliseconds: 360000000  # 1시간
     refreshTokenExpiration:
-      milliseconds: 604800000  # 1주일
+      milliseconds: 60480000000  # 1주일
+
