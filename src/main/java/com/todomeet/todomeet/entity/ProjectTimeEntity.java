@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
-import java.util.List;
+
 
 @Builder
 @AllArgsConstructor
@@ -30,10 +30,10 @@ public class ProjectTimeEntity {
     private String userEmail;
 
     @JsonFormat(pattern = "HH:mm:ss")
-    private String startTime;
+    private String startTime="00:00:00";
 
     @JsonFormat(pattern = "HH:mm:ss")
-    private String endTime;
+    private String endTime="23:59:59";
 
     private boolean isCheck = false;
 
