@@ -60,7 +60,7 @@ public class ScheduleService {
                     //LocalTime Date  ->  string 으로 변환 필요
 
                     ProjectEntity projectEntity = projectRepository.getReferenceById(entity.getProjectId());
-
+                    scheduleDTO.setProjectId(projectEntity.getProjectId());
                     scheduleDTO.setMemo(projectEntity.getMemo());
                     scheduleDTO.setEventName(projectEntity.getEventName());
 
@@ -101,7 +101,7 @@ public class ScheduleService {
                     // LocalTime 및 LocalDate를 String으로 변환 필요
 
                     ProjectEntity projectEntity = projectRepository.getReferenceById(entity.getProjectId());
-
+                    scheduleDTO.setProjectId(projectEntity.getProjectId());
                     scheduleDTO.setMemo(projectEntity.getMemo());
                     scheduleDTO.setEventName(projectEntity.getEventName());
 

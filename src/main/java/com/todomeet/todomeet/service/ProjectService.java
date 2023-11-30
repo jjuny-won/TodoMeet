@@ -68,8 +68,9 @@ public class ProjectService {
                         return projectTimeEntity;
                     })
                     .collect(Collectors.toList());
-
+            projectDto.setProjectId(projectEntity.getProjectId());
             projectTimeRepository.saveAll(timeEntities);
+
           return projectDto;
         }
         throw new BaseException(GlobalErrorCode.NOT_FOUND_ERROR);
@@ -117,7 +118,7 @@ public class ProjectService {
                     .collect(Collectors.toList());
 
             projectTimeRepository.saveAll(timeEntities);
-
+            projectDto.setProjectId(projectEntity.getProjectId());
             return projectDto;
         } else {
             throw new BaseException(GlobalErrorCode.NOT_FOUND_ERROR);

@@ -20,6 +20,7 @@ public class ProjectDto {
     private LocalDate endDay;
 
     private String memo;
+    private Long projectId;
 
     private List<TimeSlot> timeSlots;
 

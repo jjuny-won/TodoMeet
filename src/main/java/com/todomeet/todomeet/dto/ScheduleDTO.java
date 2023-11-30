@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 public class ScheduleDTO {
 
-
+    private Long projectId;
     private String startTime;
     private String endTime;
     private boolean isCheck;
