@@ -17,6 +17,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.hibernate.annotations.NotFound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -77,15 +79,22 @@ public class ProjectService {
     }
 
     public ResponseEntity deleteSchedule(Long projectId) {
-        try {
-            projectRepository.deleteById(projectId);
-            projectTimeRepository.deleteByProjectId(projectId);
-            return ResponseEntity.ok("일정이 삭제되었습니다");
-        } catch (Exception e) {
-            return (ResponseEntity) ResponseEntity.notFound();
-        }
-    }
+        String userEmail = JwtAuthenticationFilter.getUserEmailFromToken();
 
+        Optional<ProjectEntity> projectEntity = projectRepository.findById(projectId);
+        if(projectEntity.isPresent()) {
+            if(projectEntity.get().getUserId().equals(userEmail)) {
+                projectRepository.deleteById(projectId);
+                projectTimeRepository.deleteByProjectId(projectId);
+                return ResponseEntity.ok().build();
+            }
+            throw new BaseException(GlobalErrorCode.ACCESS_DENIED);
+        }
+        else{
+          throw new BaseException(GlobalErrorCode.NOT_FOUND_ERROR);
+        }
+
+    }
     @Transactional
     public ProjectDto patchSchedule(Long projectId, ProjectDto projectDto) {
         String userEmail = JwtAuthenticationFilter.getUserEmailFromToken();
