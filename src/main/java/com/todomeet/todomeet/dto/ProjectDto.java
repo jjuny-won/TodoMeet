@@ -1,6 +1,7 @@
 package com.todomeet.todomeet.dto;
 
 import com.todomeet.todomeet.entity.ProjectEntity;
+import com.todomeet.todomeet.entity.ProjectTimeEntity;
 import lombok.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -27,7 +28,7 @@ public class ProjectDto {
     @AllArgsConstructor
     @NoArgsConstructor
     public static class TimeSlot {
-        private String day;
+        private LocalDate day;
         private LocalTime startTime;
         private LocalTime endTime;
     }
@@ -42,4 +43,6 @@ public class ProjectDto {
                 .memo(projectEntity.getMemo())
                 .build();
     }
+
+
 }

@@ -1,5 +1,6 @@
 package com.todomeet.todomeet.controller;
 import com.todomeet.todomeet.dto.ProjectDto;
+import com.todomeet.todomeet.dto.ProjectTimeDTO;
 import com.todomeet.todomeet.service.ProjectService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -7,6 +8,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @RestController
@@ -23,7 +27,6 @@ public class ProjectController {
     public ProjectDto addSchedule(@RequestBody  ProjectDto projectDto){
         log.info("일정 등록 start");
         return projectService.addSchedule(projectDto);
-
     }
 
 //  모임 삭제
@@ -31,15 +34,14 @@ public class ProjectController {
     public ResponseEntity deleteSchedule(@PathVariable Long projectId){
         ResponseEntity responseEntity = projectService.deleteSchedule(projectId);
         return responseEntity;
-
     }
 
-//모임 수정
-@PatchMapping("/{projectId}")
-public ResponseEntity<?> patchSchedule(@PathVariable Long projectId, @RequestBody ProjectDto projectDto) {
-    ProjectDto result = projectService.patchSchedule(projectId, projectDto);
-    return ResponseEntity.ok(result);
-}
+    //모임 수정
+    @PatchMapping("/{projectId}")
+    public ResponseEntity<?> patchSchedule(@PathVariable Long projectId, @RequestBody ProjectDto projectDto) {
+        ProjectDto result = projectService.patchSchedule(projectId, projectDto);
+        return ResponseEntity.ok(result);
+    }
 
 
     //모임 조회
@@ -53,7 +55,11 @@ public ResponseEntity<?> patchSchedule(@PathVariable Long projectId, @RequestBod
 
     }
 
-
-
+    //check
+    @PostMapping("/check")
+    public ResponseEntity<Void> checkProject(@RequestParam Long projectId, @RequestParam LocalDate day, @RequestParam boolean isChecked){
+        projectService.saveCheckStatus(projectId, day, isChecked);
+        return ResponseEntity.ok().build();
+    }
 
 }

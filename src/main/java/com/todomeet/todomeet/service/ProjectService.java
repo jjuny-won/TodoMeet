@@ -4,6 +4,7 @@ package com.todomeet.todomeet.service;
 import com.todomeet.todomeet.Security.JwtAuthenticationFilter;
 import com.todomeet.todomeet.Security.JwtTokenProvider;
 import com.todomeet.todomeet.dto.ProjectDto;
+import com.todomeet.todomeet.dto.ProjectTimeDTO;
 import com.todomeet.todomeet.entity.ProjectEntity;
 import com.todomeet.todomeet.entity.ProjectTimeEntity;
 import com.todomeet.todomeet.exception.exception.BaseException;
@@ -13,6 +14,7 @@ import com.todomeet.todomeet.repository.ProjectTimeRepository;
 import com.todomeet.todomeet.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.annotations.NotFound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +23,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
@@ -75,6 +78,7 @@ public class ProjectService {
     public ResponseEntity deleteSchedule(Long projectId) {
         try {
             projectRepository.deleteById(projectId);
+            projectTimeRepository.deleteByProjectId(projectId);
             return ResponseEntity.ok("일정이 삭제되었습니다");
         } catch (Exception e) {
             return (ResponseEntity) ResponseEntity.notFound();
@@ -119,16 +123,46 @@ public class ProjectService {
             throw new BaseException(GlobalErrorCode.NOT_FOUND_ERROR);
 
         }
-        // 프로젝트를 찾을 수 없는 경우
-//        throw new BaseException(GlobalErrorCode.NOT_FOUND_ERROR);
-//    }
     }
-    //아이디로 조회하면 반환하는 함수
+    //일별 조회
     public ProjectDto getProject(Long projectId)
     {
         ProjectEntity projectEntity = projectRepository.findById(projectId)
                 .orElseThrow(() -> new BaseException(GlobalErrorCode.NOT_FOUND_ERROR));
         return ProjectDto.projectToDto(projectEntity);
 
+    }
+
+    public List<ProjectTimeDTO> getProjectsForDate(String date) {
+        // date를 기간으로 변환 (startDay <= date <= endDay)
+        LocalDate targetDate = LocalDate.parse(date);
+        LocalDateTime startDateTime = targetDate.atStartOfDay();
+        LocalDateTime endDateTime = targetDate.atTime(LocalTime.MAX);
+
+        // 해당 날짜 범위에 속하는 프로젝트 시간 데이터 조회
+        List<ProjectTimeEntity> timeEntities = projectTimeRepository.findByDayBetween(startDateTime, endDateTime);
+
+        // 조회된 시간 데이터로부터 프로젝트 조회
+        List<ProjectTimeDTO> projects = timeEntities.stream()
+                .map(ProjectTimeDTO::new)
+                .collect(Collectors.toList());
+
+        return projects;
+    }
+
+    //체크 상태 저장
+    public void saveCheckStatus(Long projectId, LocalDate date, boolean isChecked) {
+        // ProjectId가 존재하는지 확인
+        if(!projectTimeRepository.findByProjectId(projectId).isEmpty()) {
+            Optional<ProjectTimeEntity> projectTimeEntityOptional = projectTimeRepository.findByProjectIdAndDay(projectId, date);
+
+            // 만약 찾은 경우에만 처리
+            projectTimeEntityOptional.ifPresent(entity -> {
+                entity.setCheck(isChecked);
+                projectTimeRepository.save(entity);
+            });
+        }else{
+            throw new BaseException(GlobalErrorCode.NOT_FOUND_ERROR);
+        }
     }
 }

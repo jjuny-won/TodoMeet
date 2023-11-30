@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Builder
@@ -23,7 +24,7 @@ public class ProjectTimeEntity {
     private Long projectId;
 
     @Column(nullable = false)
-    private String day;
+    private LocalDate day;
 
     @Column(nullable = false)
     private String userEmail;
@@ -33,6 +34,12 @@ public class ProjectTimeEntity {
 
     @JsonFormat(pattern = "HH:mm:ss")
     private String endTime;
+
+    private boolean isCheck = false;
+
+
+
+
 
 
 }
