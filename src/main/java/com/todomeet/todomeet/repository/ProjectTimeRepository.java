@@ -19,6 +19,11 @@ public interface  ProjectTimeRepository  extends JpaRepository<ProjectTimeEntity
     List<ProjectTimeEntity> findByProjectId(Long projectId);
     Optional<ProjectTimeEntity> findByProjectIdAndDay(Long projectId, LocalDate date);
 
+    List<ProjectTimeEntity> findByday(LocalDate day);
+
+    List<ProjectTimeEntity> findByDayBetween(LocalDate startDate, LocalDate endDate);
+
+
     List<ProjectTimeEntity> findByDayBetween(LocalDateTime startDateTime, LocalDateTime endDateTime);
 
 }
