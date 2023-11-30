@@ -1,5 +1,6 @@
 package com.todomeet.todomeet.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.todomeet.todomeet.entity.ProjectEntity;
 import com.todomeet.todomeet.entity.ProjectTimeEntity;
 import lombok.*;
@@ -16,7 +17,12 @@ import java.util.List;
 public class ProjectDto {
     private String userEmail;
     private String eventName;
+
+//    @JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.STRING, timezone = "Asia/Seoul")
+
     private LocalDate startDay;
+
+//    @JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.STRING, timezone = "Asia/Seoul")
     private LocalDate endDay;
 
     private String memo;
@@ -29,9 +35,13 @@ public class ProjectDto {
     @AllArgsConstructor
     @NoArgsConstructor
     public static class TimeSlot {
+
+//        @JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.STRING, timezone = "Asia/Seoul")
         private LocalDate day;
-        private LocalTime startTime;
-        private LocalTime endTime;
+//        @JsonFormat(pattern = "HH:mm", shape = JsonFormat.Shape.STRING, timezone = "Asia/Seoul")
+        private LocalTime startTime = LocalTime.of(0, 0);
+//        @JsonFormat(pattern = "HH:mm", shape = JsonFormat.Shape.STRING, timezone = "Asia/Seoul")
+        private LocalTime endTime = LocalTime.of(23, 59);
     }
 
 

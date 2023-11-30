@@ -24,16 +24,16 @@ public class ProjectTimeEntity {
     private Long projectId;
 
     @Column(nullable = false)
+//    @JsonFormat(pattern = "yyyy:MM:dd", shape = JsonFormat.Shape.STRING, timezone = "Asia/Seoul")
     private LocalDate day;
 
     @Column(nullable = false)
     private String userEmail;
 
-    @JsonFormat(pattern = "HH:mm:ss")
-    private String startTime="00:00:00";
-
-    @JsonFormat(pattern = "HH:mm:ss")
-    private String endTime="23:59:59";
+//    @JsonFormat(pattern = "HH:mm", shape = JsonFormat.Shape.STRING, timezone = "Asia/Seoul")
+    private String startTime;
+//    @JsonFormat(pattern = "HH:mm", shape = JsonFormat.Shape.STRING, timezone = "Asia/Seoul")
+    private String endTime;
 
     private boolean isCheck = false;
 
