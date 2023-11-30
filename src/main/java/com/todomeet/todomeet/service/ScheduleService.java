@@ -58,7 +58,7 @@ public class ScheduleService {
                     scheduleDTO.setEndTime(entity.getEndTime());
                     scheduleDTO.setCheck(entity.isCheck());
                     //LocalTime Date  ->  string 으로 변환 필요
-
+                    scheduleDTO.setDay(entity.getDay());
                     ProjectEntity projectEntity = projectRepository.getReferenceById(entity.getProjectId());
                     scheduleDTO.setProjectId(projectEntity.getProjectId());
                     scheduleDTO.setMemo(projectEntity.getMemo());
@@ -94,7 +94,7 @@ public class ScheduleService {
             for (ProjectTimeEntity entity : timeEntities) {
                 if (Objects.equals(entity.getUserEmail(), userEmail)) {
                     ScheduleDTO scheduleDTO = new ScheduleDTO();
-
+                    scheduleDTO.setDay(entity.getDay());
                     scheduleDTO.setStartTime(entity.getStartTime());
                     scheduleDTO.setEndTime(entity.getEndTime());
                     scheduleDTO.setCheck(entity.isCheck());

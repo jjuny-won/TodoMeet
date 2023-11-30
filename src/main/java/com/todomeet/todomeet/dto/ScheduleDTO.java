@@ -21,4 +21,16 @@ public class ScheduleDTO {
     private String eventName;
     private String memo;
 
+    private LocalDate day;
+
+
+    public ScheduleDTO(Long projectId, String startTime, String endTime, boolean isCheck, String eventName , String memo){
+        this.projectId = projectId;
+        this.startTime = startTime;
+        this.endTime= endTime;
+        this.isCheck = isCheck;
+        this.eventName =eventName;
+        this.memo = memo;
+    }
+
 }
