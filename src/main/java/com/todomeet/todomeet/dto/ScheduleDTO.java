@@ -1,5 +1,6 @@
 package com.todomeet.todomeet.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -20,7 +21,7 @@ public class ScheduleDTO {
     private boolean isCheck;
     private String eventName;
     private String memo;
-
+    @JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.STRING, timezone = "Asia/Seoul")
     private LocalDate day;
 
 
