@@ -46,7 +46,7 @@ public class ProjectController {
 
     //모임 조회
     @GetMapping("/{projectId}")
-    public ResponseEntity<ProjectDto> patchSchedule(@PathVariable Long projectId) {
+    public ResponseEntity<ProjectDto> getProject(@PathVariable Long projectId) {
         log.info("일정 조회 start");
         ProjectDto updatedProject = projectService.getProject(projectId);
         log.info("일정 조회 End");

@@ -134,14 +134,48 @@ public class ProjectService {
 
         }
     }
-    //일별 조회
-    public ProjectDto getProject(Long projectId)
-    {
-        ProjectEntity projectEntity = projectRepository.findById(projectId)
-                .orElseThrow(() -> new BaseException(GlobalErrorCode.NOT_FOUND_ERROR));
-        return ProjectDto.projectToDto(projectEntity);
 
+    // 프로젝트 Id로 조회
+    public ProjectDto getProject(Long projectId) {
+        String userEmail = JwtAuthenticationFilter.getUserEmailFromToken();
+        Optional<ProjectEntity> optionalProjectEntity = projectRepository.findById(projectId);
+
+        if (optionalProjectEntity.isPresent()) {
+            ProjectEntity projectEntity = optionalProjectEntity.get();
+            System.out.println("------"+projectEntity.getUserId()+userEmail+"--------");
+            // 프로젝트의 사용자와 현재 사용자가 일치하는지 확인
+            if (projectEntity.getUserId().equals(userEmail)) {
+                ProjectDto projectDto = new ProjectDto();
+
+                projectDto.setUserEmail(userEmail);
+                projectDto.setEventName(projectEntity.getEventName());
+                projectDto.setStartDay(projectEntity.getStartDay());
+                projectDto.setEndDay(projectEntity.getEndDay());
+                projectDto.setMemo(projectEntity.getMemo());
+                projectDto.setProjectId(projectEntity.getProjectId());
+
+                // 프로젝트 아이디에 해당하는 시간 데이터 조회
+                List<ProjectTimeEntity> projectTimeEntities = projectTimeRepository.findByProjectId(projectId);
+                projectDto.setTimeSlots(projectTimeEntities.stream()
+                        .map(timeEntity -> {
+                            ProjectDto.TimeSlot timeSlot = new ProjectDto.TimeSlot();
+                            timeSlot.setDay(timeEntity.getDay());
+                            timeSlot.setStartTime(LocalTime.parse(timeEntity.getStartTime()));
+                            timeSlot.setEndTime(LocalTime.parse(timeEntity.getEndTime()));
+                            timeSlot.setCheck(timeSlot.isCheck()); // isCheckd 대신에 isCheck 사용
+                            return timeSlot;
+                        })
+                        .collect(Collectors.toList()));
+
+                return projectDto;
+            } else {
+                throw new BaseException(GlobalErrorCode.ACCESS_DENIED);
+            }
+        } else {
+            throw new BaseException(GlobalErrorCode.NOT_FOUND_ERROR);
+        }
     }
+
 
     public List<ProjectTimeDTO> getProjectsForDate(String date) {
         // date를 기간으로 변환 (startDay <= date <= endDay)

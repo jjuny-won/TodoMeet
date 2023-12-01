@@ -41,6 +41,8 @@ public class ProjectDto {
         private LocalTime startTime = LocalTime.of(0, 0);
         @JsonFormat(pattern = "HH:mm", shape = JsonFormat.Shape.STRING, timezone = "Asia/Seoul")
         private LocalTime endTime = LocalTime.of(23, 59);
+
+        private boolean isCheck;
     }
 
 
