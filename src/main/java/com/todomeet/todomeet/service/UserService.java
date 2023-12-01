@@ -42,8 +42,8 @@ public class UserService {
                 new UsernamePasswordAuthenticationToken(userDto.getUserEmail(), userDto);
         JwtAuthDto jwtAuthDto = jwtTokenProvider.generateTokens(authenticationToken);
 
-        UserEntity user = new UserEntity(userDto.getUserEmail(), userDto.getProfileImage(),
-                userDto.getUserName(), jwtAuthDto.getRefreshToken() );
+        UserEntity user = new UserEntity(userDto.getUserEmail(),
+                userDto.getUserName() , userDto.getProfileImage(),jwtAuthDto.getRefreshToken() );
         userRepository.save(user);
 
         return  jwtAuthDto;
